@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#7B5BB5"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
+        android:text="NOTE"
+        android:textSize="40dp"
+        android:background="@drawable/noe"
+        android:id="@+id/noteClick"
+        android:layout_width="370dp"
+        android:layout_height="150dp" />
+
+    <Button
+        android:layout_marginTop="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/noteClick"
+        android:text="TODO List"
+        android:textSize="40dp"
+        android:background="@drawable/list"
+        android:id="@+id/todoClick"
+        android:layout_width="370dp"
+        android:layout_height="150dp"
+        tools:layout_editor_absoluteX="20dp"
+        tools:layout_editor_absoluteY="300dp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:layout_marginTop="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/todoClick"
+        android:text="TASK"
+        android:textSize="40dp"
+        android:background="@drawable/taskk"
+        android:id="@+id/taskClick"
+        android:layout_width="370dp"
+        android:layout_height="150dp"
+        tools:layout_editor_absoluteX="20dp"
+        tools:layout_editor_absoluteY="500dp"
+        tools:ignore="MissingConstraints" />
+
+
+
+
+</RelativeLayout>
