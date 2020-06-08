@@ -3,42 +3,42 @@ package com.ark.arkremindme;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-public class CongViec {
+public class GhiChu {
 
     private static final String PREFERENCES_NAMESPACE = "checkboxes_states";
 
-    private int IdCV;
-    private String TenCV;
+    private int IdGC;
+    private String TenGC;
     private String date;
     private String time;
     boolean selected = false;
     private SharedPreferences mSettings;
     private SharedPreferences.Editor mEditor;
 
-    public CongViec(Context context, int idCV, String tenCV, String date, String time, boolean selected) {
-        IdCV = idCV;
-        TenCV = tenCV;
+    public GhiChu(Context context, int idGC, String tenGC, String date, String time, boolean selected) {
+        IdGC = idGC;
+        TenGC = tenGC;
         this.date = date;
         this.time = time;
         mSettings = context.getSharedPreferences(PREFERENCES_NAMESPACE, 0);
         mEditor = mSettings.edit();
-        setSelected(mSettings.getBoolean(TenCV, selected));
+        setSelected(mSettings.getBoolean(TenGC, selected));
     }
 
-    public int getIdCV() {
-        return IdCV;
+    public int getIdGC() {
+        return IdGC;
     }
 
-    public void setIdCV(int idCV) {
-        IdCV = idCV;
+    public void setIdGC(int idGC) {
+        IdGC = idGC;
     }
 
-    public String getTenCV() {
-        return TenCV;
+    public String getTenGC() {
+        return TenGC;
     }
 
-    public void setTenCV(String tenCV) {
-        TenCV = tenCV;
+    public void setTenGC(String tenGC) {
+        TenGC = tenGC;
     }
 
     public String getDate() {
@@ -57,14 +57,13 @@ public class CongViec {
         this.time = time;
     }
 
-
     public boolean isSelected() {
         return selected;
     }
 
     public void setSelected(boolean selected) {
         if(this.selected != selected) {
-            mEditor.putBoolean(TenCV, selected);
+            mEditor.putBoolean(TenGC, selected);
             mEditor.commit();
             this.selected = selected;
         }

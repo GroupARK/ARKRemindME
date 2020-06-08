@@ -33,7 +33,6 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
     //Add library
-    compile 'com.miguelcatalan:materialsearchview:1.4.0'
+    implementation 'com.miguelcatalan:materialsearchview:1.4.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
 }
-
-

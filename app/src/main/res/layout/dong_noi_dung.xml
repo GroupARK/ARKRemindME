@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:weightSum="10"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textviewND"
+        android:textColor="@color/colorPrimary"
+        android:layout_weight="8"
+        android:textSize="30sp"
+        android:text="Tên nội dung"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:id="@+id/thungrac"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:layout_weight="1"
+        android:src="@drawable/thungrac"/>
+
+    <ImageView
+        android:id="@+id/butchi"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:layout_weight="1"
+        android:src="@drawable/butchi" />
+
+
+</LinearLayout>

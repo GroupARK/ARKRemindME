@@ -7,42 +7,39 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class CongViecAdapter extends BaseAdapter {
+public class GhiChuAdapter extends BaseAdapter {
 
-    private TodoList context;
+    private Note context;
     private int layout;
     LayoutInflater inflater;
-    private List<CongViec> congViecList;
-    private ArrayList<CongViec> arrayList;
+    private List<GhiChu> ghiChuList;
+    private ArrayList<GhiChu> arrayList;
 
-    public CongViecAdapter(TodoList context, int layout, List<CongViec> congViecList) {
+    public GhiChuAdapter(Note context, int layout, List<GhiChu> ghiChuList) {
         this.context = context;
         this.layout = layout;
-        this.congViecList = congViecList;
+        this.ghiChuList = ghiChuList;
         inflater = LayoutInflater.from(context);
+        this.arrayList = new ArrayList<GhiChu>();
+        this.arrayList.addAll(ghiChuList);
 
-        this.arrayList = new ArrayList<CongViec>();
-        this.arrayList.addAll(congViecList);
     }
 
     @Override
     public int getCount() {
-        return congViecList.size();
+        return ghiChuList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return congViecList.get(position);
+        return ghiChuList.get(position);
     }
 
     @Override
@@ -53,8 +50,7 @@ public class CongViecAdapter extends BaseAdapter {
     private class ViewHolder {
         TextView txtTen, txtNgay, txtThoiGian;
         ImageView imgDelete, imgEdit;
-        CheckBox cbCongViec;
-
+        CheckBox cbGhiChu;
     }
 
     @Override
@@ -65,20 +61,20 @@ public class CongViecAdapter extends BaseAdapter {
             holder = new ViewHolder();
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(layout, null);
-            holder.txtTen = (TextView) convertView.findViewById(R.id.textviewTCV);
-            holder.txtNgay = (TextView) convertView.findViewById(R.id.textViewNgayCV);
-            holder.txtThoiGian = (TextView) convertView.findViewById(R.id.textViewThoiGianCV);
-            holder.imgDelete = (ImageView) convertView.findViewById(R.id.tododelete);
-            holder.imgEdit = (ImageView) convertView.findViewById(R.id.todoedit);
-            holder.cbCongViec = (CheckBox) convertView.findViewById(R.id.checkBoxCV);
+            holder.txtTen = (TextView) convertView.findViewById(R.id.textView);
+            holder.txtNgay = (TextView) convertView.findViewById(R.id.textView8);
+            holder.txtThoiGian = (TextView) convertView.findViewById(R.id.textView9);
+            holder.imgDelete = (ImageView) convertView.findViewById(R.id.imageView2);
+            holder.imgEdit = (ImageView) convertView.findViewById(R.id.imageView3);
+            holder.cbGhiChu = (CheckBox) convertView.findViewById(R.id.checkBoxGC);
             convertView.setTag(holder);
 
-            holder.cbCongViec.setOnClickListener(new View.OnClickListener() {
+            holder.cbGhiChu.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     CheckBox cb = (CheckBox) v;
-                    CongViec congViec = (CongViec) cb.getTag();
-                    congViec.setSelected(cb.isChecked());
+                    GhiChu ghiChu = (GhiChu) cb.getTag();
+                    ghiChu.setSelected(cb.isChecked());
                 }
             });
 
@@ -86,27 +82,26 @@ public class CongViecAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        final CongViec congViec = congViecList.get(position);
+        final GhiChu ghiChu = ghiChuList.get(position);
 
-        holder.cbCongViec.setChecked(congViec.isSelected());
-        holder.cbCongViec.setTag(congViec);
+        holder.cbGhiChu.setChecked(ghiChu.isSelected());
+        holder.cbGhiChu.setTag(ghiChu);
 
-        holder.txtTen.setText(congViec.getTenCV());
-        holder.txtNgay.setText(congViec.getDate());
-        holder.txtThoiGian.setText(congViec.getTime());
-
+        holder.txtTen.setText(ghiChu.getTenGC());
+        holder.txtNgay.setText(ghiChu.getDate());
+        holder.txtThoiGian.setText(ghiChu.getTime());
 
         holder.imgEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.DialogSuaCongViec(congViec.getTenCV(), congViec.getIdCV());
+                context.DialogSuaCongViec(ghiChu.getTenGC(), ghiChu.getIdGC());
             }
         });
 
         holder.imgDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.DialogXoaCV(congViec.getTenCV(), congViec.getIdCV());
+                context.DialogXoaCV(ghiChu.getTenGC(), ghiChu.getIdGC());
 
             }
         });
@@ -116,13 +111,13 @@ public class CongViecAdapter extends BaseAdapter {
 
     public void filter(String charText) {
         charText = charText.toLowerCase(Locale.getDefault());
-        congViecList.clear();
+        ghiChuList.clear();
         if (charText.length() == 0) {
-            congViecList.addAll(arrayList);
+            ghiChuList.addAll(arrayList);
         } else {
-            for (CongViec congviec : arrayList) {
-                if (congviec.getTenCV().toLowerCase(Locale.getDefault()).contains(charText)) {
-                    congViecList.add(congviec);
+            for (GhiChu ghichu : arrayList) {
+                if (ghichu.getTenGC().toLowerCase(Locale.getDefault()).contains(charText)) {
+                    ghiChuList.add(ghichu);
                 }
             }
         }

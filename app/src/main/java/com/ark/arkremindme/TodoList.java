@@ -26,6 +26,7 @@ import android.widget.Toolbar;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class TodoList extends AppCompatActivity implements AppManager {
 
@@ -34,8 +35,6 @@ public class TodoList extends AppCompatActivity implements AppManager {
     ListView lvCongViec;
     ArrayList<CongViec> arrayCongViec;
     CongViecAdapter adapter;
-
-    CheckBox cbCongViec;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,14 +47,11 @@ public class TodoList extends AppCompatActivity implements AppManager {
         adapter = new CongViecAdapter(this, R.layout.dong_cong_viec, arrayCongViec);
         lvCongViec.setAdapter(adapter);
 
-        database = new Database(this, "todoList.sqlite", null, 1);
+        database = new Database(this, "TodoList.sqlite", null, 1);
 
-        database.QueryData("CREATE TABLE IF NOT EXISTS CongViec(Id INTEGER PRIMARY KEY AUTOINCREMENT, TenCV VARCHAR(250))");
-
-        // database.QueryData("INSERT INTO CongViec VALUES(null, 'Làm OOP')");
+        database.QueryData("CREATE TABLE IF NOT EXISTS CongViec(Id INTEGER PRIMARY KEY AUTOINCREMENT, TenCV VARCHAR(250), Ngay DATE, ThoiGian TIME)");
 
         GetDataCongViec();
-
     }
 
     private void GetDataCongViec() {
@@ -64,8 +60,9 @@ public class TodoList extends AppCompatActivity implements AppManager {
         while (dataCongViec.moveToNext()) {
             String name = dataCongViec.getString(1);
             int id = dataCongViec.getInt(0);
-            arrayCongViec.add(new CongViec(TodoList.this, id, name, false));
-
+            String date = dataCongViec.getString(2);
+            String time = dataCongViec.getString(3);
+            arrayCongViec.add(new CongViec(TodoList.this, id, name, date, time, false));
         }
 
         adapter.notifyDataSetChanged();
@@ -113,18 +110,27 @@ public class TodoList extends AppCompatActivity implements AppManager {
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_them_cong_viec);
 
-        final EditText edtTen = dialog.findViewById(R.id.edittextThemCV);
-        Button btnThem = (Button) dialog.findViewById(R.id.buttonThem);
-        Button btnHuy = (Button) dialog.findViewById(R.id.buttonHuy);
+        final EditText edtTen = (EditText) dialog.findViewById(R.id.edittextThemCV);
+        final EditText edtNgay = dialog.findViewById(R.id.textNgayCV);
+        final EditText edtThoiGian = dialog.findViewById(R.id.textThoiGianCV);
+
+        Button btnThem = dialog.findViewById(R.id.buttonThem);
+        Button btnHuy = dialog.findViewById(R.id.buttonHuy);
+
+        edtNgay.setText("DD/MM/YYYY");
+        edtThoiGian.setText("HH:MM");
 
         btnThem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String tencv = edtTen.getText().toString();
-                if (tencv.equals("")) {
+                String ngayCV = edtNgay.getText().toString();
+                String thoigianCV = edtThoiGian.getText().toString();
+                if (tencv.equals("") && ngayCV.equals("") && thoigianCV.equals("")) {
                     Toast.makeText(TodoList.this, "Vui lòng nhập tên công việc", Toast.LENGTH_SHORT).show();
                 } else {
-                    database.QueryData("INSERT INTO CongViec VALUES(null, '" + tencv + "')");
+                    database.QueryData("INSERT INTO CongViec VALUES(null, '" + tencv + "', '"+ ngayCV +"', '"+ thoigianCV +"')");
+                    Toast.makeText(TodoList.this, "Đã thêm", Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
                     GetDataCongViec();
                 }
@@ -148,16 +154,22 @@ public class TodoList extends AppCompatActivity implements AppManager {
         dialog.setContentView(R.layout.dialog_sua);
         dialog.show();
 
-        final EditText edtTenCV = (EditText) dialog.findViewById(R.id.edittextXNCV);
-        Button btnXacNhan = (Button) dialog.findViewById(R.id.buttonXNCV);
+        final EditText edtTenCV = dialog.findViewById(R.id.edittextXNCV);
+        final EditText edtNgayCV = dialog.findViewById(R.id.edittextNgayCV);
+        final EditText edtThoiGianCV = dialog.findViewById(R.id.edittextThoiGianCV);
+        Button btnXacNhan = dialog.findViewById(R.id.buttonXNCV);
 
         edtTenCV.setText(name);
+        edtNgayCV.setText("NN/TT/NNNN");
+        edtThoiGianCV.setText("GG:PP");
+
         btnXacNhan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //trim() bỏ khoảng trắng đầu đuôi
-                String tenMoi = edtTenCV.getText().toString().trim();
-                database.QueryData("UPDATE CongViec SET TenCV = '" + tenMoi + "' WHERE Id = '" + id + "' ");
+                String tenMoi = edtTenCV.getText().toString();
+                String ngayMoi = edtNgayCV.getText().toString();
+                String thoigianMoi = edtThoiGianCV.getText().toString();
+                database.QueryData("UPDATE CongViec SET TenCV  = '"+ tenMoi +"', Ngay = '"+ ngayMoi +"', ThoiGian = '"+ thoigianMoi +"' WHERE Id = '"+ id +"'");
                 Toast.makeText(TodoList.this, "Đã cập nhật", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
                 GetDataCongViec();

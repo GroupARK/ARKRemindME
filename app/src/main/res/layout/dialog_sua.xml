@@ -6,6 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/CNCV"
         android:textStyle="bold"
         android:padding="10dp"
         android:gravity="center"
@@ -20,11 +21,33 @@
         android:hint="Nhập tên công việc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-    
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        
+
+        <EditText
+            android:layout_weight="1"
+            android:layout_marginTop="10dp"
+            android:hint="NHẬP NGÀY   "
+            android:id="@+id/edittextNgayCV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:layout_weight="1"
+            android:layout_marginTop="10dp"
+            android:hint="NHẬP GIỜ"
+            android:id="@+id/edittextThoiGianCV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
         <Button
             android:layout_marginLeft="70dp"
             android:layout_marginTop="20dp"
