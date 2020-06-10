@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.List;
@@ -39,6 +40,7 @@ public class NoiDungAdapter extends BaseAdapter {
     private class ViewHoler {
         TextView txtTen;
         ImageView imgDelete, imgEdit;
+        CheckBox checkBox;
     }
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
@@ -51,12 +53,25 @@ public class NoiDungAdapter extends BaseAdapter {
             holder.txtTen = convertView.findViewById(R.id.textviewND);
             holder.imgDelete = convertView.findViewById(R.id.thungrac);
             holder.imgEdit = convertView.findViewById(R.id.butchi);
+            holder.checkBox = convertView.findViewById(R.id.checkboxND);
             convertView.setTag(holder);
+
+            holder.checkBox.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    CheckBox cb = (CheckBox) v;
+                    NoiDung noiDung = (NoiDung) cb.getTag();
+                    noiDung.setSelected(cb.isChecked());
+                }
+            });
         } else {
             holder = (ViewHoler) convertView.getTag();
         }
 
         final NoiDung noiDung = noiDungList.get(position);
+
+        holder.checkBox.setChecked(noiDung.isSelected());
+        holder.checkBox.setTag(noiDung);
 
         holder.txtTen.setText(noiDung.getTenND());
 
@@ -73,6 +88,7 @@ public class NoiDungAdapter extends BaseAdapter {
                 context.DialogSuaCongViec(noiDung.getTenND(), noiDung.getId());
             }
         });
+
 
         return convertView;
     }

@@ -156,6 +156,8 @@ public class Task extends AppCompatActivity implements AppManager {
 
     public void editContentVL(int id){
         Intent i = new Intent(Task.this, Noidungvieclam.class);
+        String title = arrayViecLam.get(id).getTenVL();
+        i.putExtra("title",title);
         startActivity(i);
     }
 

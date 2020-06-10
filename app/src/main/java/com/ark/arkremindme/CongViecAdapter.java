@@ -7,7 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
+
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -17,22 +19,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class CongViecAdapter extends BaseAdapter {
+public class CongViecAdapter extends BaseAdapter implements Filterable {
 
     private TodoList context;
     private int layout;
-    LayoutInflater inflater;
     private List<CongViec> congViecList;
-    private ArrayList<CongViec> arrayList;
+    private CustomFilter filter;
+    private ArrayList<CongViec> filterList;
+
 
     public CongViecAdapter(TodoList context, int layout, List<CongViec> congViecList) {
         this.context = context;
         this.layout = layout;
         this.congViecList = congViecList;
-        inflater = LayoutInflater.from(context);
+        this.filterList = (ArrayList<CongViec>) congViecList;
 
-        this.arrayList = new ArrayList<CongViec>();
-        this.arrayList.addAll(congViecList);
     }
 
     @Override
@@ -48,6 +49,50 @@ public class CongViecAdapter extends BaseAdapter {
     @Override
     public long getItemId(int position) {
         return position;
+    }
+
+    @Override
+    public Filter getFilter() {
+        if (filter == null) {
+            filter = new CustomFilter();
+        }
+        return filter;
+    }
+
+    class CustomFilter extends Filter {
+
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+
+            FilterResults results = new FilterResults();
+
+            if (constraint != null && constraint.length() > 0) {
+                constraint = constraint.toString().toUpperCase();
+                ArrayList<CongViec> filters = new ArrayList<>();
+
+                for (int i = 0; i < filterList.size(); i++) {
+                    if (filterList.get(i).getTenCV().toUpperCase().contains(constraint)) {
+                        CongViec cv = new CongViec(context ,filterList.get(i).getIdCV(), filterList.get(i).getTenCV(), filterList.get(i).getDate(), filterList.get(i).getTime(), false);
+                        filters.add(cv);
+
+                    }
+                }
+                results.count = filters.size();
+                results.values = filters;
+            } else {
+                results.count = filterList.size();
+                results.values = filterList;
+            }
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            congViecList = (List<CongViec>) results.values;
+            notifyDataSetChanged();
+
+        }
     }
 
     private class ViewHolder {
@@ -114,18 +159,18 @@ public class CongViecAdapter extends BaseAdapter {
         return convertView;
     }
 
-    public void filter(String charText) {
-        charText = charText.toLowerCase(Locale.getDefault());
-        congViecList.clear();
-        if (charText.length() == 0) {
-            congViecList.addAll(arrayList);
-        } else {
-            for (CongViec congviec : arrayList) {
-                if (congviec.getTenCV().toLowerCase(Locale.getDefault()).contains(charText)) {
-                    congViecList.add(congviec);
-                }
-            }
-        }
-        notifyDataSetChanged();
-    }
+//    public void filter(String charText) {
+//        charText = charText.toLowerCase(Locale.getDefault());
+//        congViecList.clear();
+//        if (charText.length() == 0) {
+//            congViecList.addAll(arrayList);
+//        } else {
+//            for (CongViec congviec : arrayList) {
+//                if (congviec.getTenCV().toLowerCase(Locale.getDefault()).contains(charText)) {
+//                    congViecList.add(congviec);
+//                }
+//            }
+//        }
+//        notifyDataSetChanged();
+//    }
 }

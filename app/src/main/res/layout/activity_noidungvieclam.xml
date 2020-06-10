@@ -2,14 +2,27 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/savebutton"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Noidungvieclam" >
+    tools:context=".Noidungvieclam">
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="70dp"
+        android:layout_height="60dp"
+        android:text="SAVE"
+        app:layout_constraintBottom_toTopOf="@+id/listviewND"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.953"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.484" />
 
     <EditText
-        android:id="@+id/editText"
-        android:layout_width="411dp"
-        android:layout_height="76dp"
+        android:id="@+id/edittextsave"
+        android:layout_width="311dp"
+        android:layout_height="85dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,11 +32,12 @@
         android:id="@+id/listviewND"
         android:layout_width="411dp"
         android:layout_height="631dp"
+        android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/edittextsave" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

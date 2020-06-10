@@ -8,25 +8,16 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.database.Cursor;
-import android.database.CursorIndexOutOfBoundsException;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class TodoList extends AppCompatActivity implements AppManager {
 
@@ -82,7 +73,9 @@ public class TodoList extends AppCompatActivity implements AppManager {
 
         getMenuInflater().inflate(R.menu.menu_todo, menu);
 
-        SearchView searchView = (SearchView) menu.findItem(R.id.menuSearch).getActionView();
+        MenuItem myActionMenuItem = menu.findItem(R.id.menuSearch);
+
+        SearchView searchView = (SearchView) myActionMenuItem.getActionView();
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -92,17 +85,11 @@ public class TodoList extends AppCompatActivity implements AppManager {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                if (TextUtils.isEmpty(newText)) {
-                    adapter.filter("");
-                    lvCongViec.clearTextFilter();
-                } else {
-                    adapter.filter(newText);
-                }
-                return true;
+                adapter.getFilter().filter(newText);
+                return false;
             }
         });
-        return true;
-//        return super.onCreateOptionsMenu(menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override

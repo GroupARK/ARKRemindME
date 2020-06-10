@@ -5,9 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,11 +28,19 @@ public class Noidungvieclam extends AppCompatActivity implements AppManager {
     ListView lvNoiDung;
     ArrayList<NoiDung> arrayNoiDung;
     NoiDungAdapter adapter;
+    String title;
+
+//    private final String KEY = "edittextValue";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_noidungvieclam);
+
+        title = getIntent().getExtras().getString("title");
+        getSupportActionBar().setTitle(title);
+
 
         lvNoiDung = (ListView) findViewById(R.id.listviewND);
         arrayNoiDung = new ArrayList<>();
@@ -39,21 +50,43 @@ public class Noidungvieclam extends AppCompatActivity implements AppManager {
 
         noidungDatabase = new Database(this, "noidung.sqlite", null, 1);
 
-        noidungDatabase.QueryData("CREATE TABLE IF NOT EXISTS NoiDung(Id INTEGER PRIMARY KEY AUTOINCREMENT, TenND VARCHAR(250))");
+        noidungDatabase.QueryData("CREATE TABLE IF NOT EXISTS "+ title +"(Id INTEGER PRIMARY KEY AUTOINCREMENT, TenND VARCHAR(250))");
+        noidungDatabase.QueryData("CREATE TABLE IF NOT EXISTS "+ title+"title(TenND VARCHAR(250))");
+
+        final EditText edt = (EditText) findViewById(R.id.edittextsave);
+        Button btnSave = (Button) findViewById(R.id.button2);
+        String name1 = getNote();
+        edt.setText(name1);
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String name = edt.getText().toString();
+                noidungDatabase.QueryData("Insert into "+ title+"title"+" values('"+name+"')");
+            }
+        });
 
         GetDataNoiDung();
     }
 
+
     private void GetDataNoiDung() {
-        Cursor dataViecLam = noidungDatabase.GetData("SELECT * FROM NoiDung");
+        Cursor dataViecLam = noidungDatabase.GetData("SELECT * FROM "+ title);
         arrayNoiDung.clear();
         while (dataViecLam.moveToNext()) {
             String name = dataViecLam.getString(1);
             int id = dataViecLam.getInt(0);
-            arrayNoiDung.add(new NoiDung(name, id));
+            arrayNoiDung.add(new NoiDung(Noidungvieclam.this, name, id, false));
 
         }
         adapter.notifyDataSetChanged();
+    }
+    public String getNote() {
+        Cursor dataNote = noidungDatabase.GetData("SELECT * FROM " + title + "title");
+        String name = null;
+        while (dataNote.moveToNext()) {
+            name = dataNote.getString(0);
+        }
+        return name;
     }
 
     @Override
@@ -86,7 +119,7 @@ public class Noidungvieclam extends AppCompatActivity implements AppManager {
                 if (tenND.equals("")) {
                     Toast.makeText(Noidungvieclam.this, "Vui lòng nhập tên nội dung", Toast.LENGTH_SHORT).show();
                 } else {
-                    noidungDatabase.QueryData("INSERT INTO NoiDung VALUES(null,'"+ tenND +"')");
+                    noidungDatabase.QueryData("INSERT INTO "+ title + " VALUES(null,'"+ tenND +"')");
                     Toast.makeText(Noidungvieclam.this, "Đã thêm", Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
                     GetDataNoiDung();
@@ -120,7 +153,7 @@ public class Noidungvieclam extends AppCompatActivity implements AppManager {
             @Override
             public void onClick(View v) {
                 String tenMoi = edtNoiDung.getText().toString().trim();
-                noidungDatabase.QueryData("UPDATE NoiDung SET TenND = '"+ tenMoi +"' WHERE Id = '"+ id +"'");
+                noidungDatabase.QueryData("UPDATE "+title+" SET TenND = '"+ tenMoi +"' WHERE Id = '"+ id +"'");
                 Toast.makeText(Noidungvieclam.this, "Đã cập nhật", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
                 GetDataNoiDung();
@@ -136,7 +169,7 @@ public class Noidungvieclam extends AppCompatActivity implements AppManager {
         dialogXoa.setPositiveButton("Có", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                noidungDatabase.QueryData("DELETE FROM NoiDung WHERE Id = '"+ id +"'");
+                noidungDatabase.QueryData("DELETE FROM "+title+" WHERE Id = '"+ id +"'");
                 Toast.makeText(Noidungvieclam.this, "Đã xóa", Toast.LENGTH_SHORT).show();
                 GetDataNoiDung();
             }

@@ -4,14 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <CheckBox
+        android:id="@+id/checkboxND"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:focusable="true"
+        android:focusableInTouchMode="true"/>
+
     <TextView
         android:id="@+id/textviewND"
-        android:textColor="@color/colorPrimary"
-        android:layout_weight="8"
-        android:textSize="30sp"
+        android:layout_width="298dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="7"
         android:text="Tên nội dung"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:textColor="@color/colorPrimary"
+        android:textSize="30sp" />
 
     <ImageView
         android:id="@+id/thungrac"
