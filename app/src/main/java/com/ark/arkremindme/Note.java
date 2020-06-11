@@ -70,23 +70,23 @@ public class Note extends AppCompatActivity implements AppManager {
         MenuItem myActionMenuItem = menu.findItem(R.id.menuSearchNote);
 
         SearchView searchView = (SearchView) myActionMenuItem.getActionView();
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                if (TextUtils.isEmpty(newText)) {
-                    adapter.filter("");
-                    lvGhiChu.clearTextFilter();
-                } else {
-                    adapter.filter(newText);
-                }
-                return true;
-            }
-        });
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                if (TextUtils.isEmpty(newText)) {
+//                    adapter.filter("");
+//                    lvGhiChu.clearTextFilter();
+//                } else {
+//                    adapter.filter(newText);
+//                }
+//                return true;
+//            }
+//        });
         return true;
     }
 

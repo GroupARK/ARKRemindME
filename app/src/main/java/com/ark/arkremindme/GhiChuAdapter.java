@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,22 +16,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class GhiChuAdapter extends BaseAdapter {
+public class GhiChuAdapter extends BaseAdapter implements Filterable {
 
     private Note context;
     private int layout;
-    LayoutInflater inflater;
     private List<GhiChu> ghiChuList;
-    private ArrayList<GhiChu> arrayList;
+    private List<GhiChu> noteListAll;
 
     public GhiChuAdapter(Note context, int layout, List<GhiChu> ghiChuList) {
         this.context = context;
         this.layout = layout;
         this.ghiChuList = ghiChuList;
-        inflater = LayoutInflater.from(context);
-        this.arrayList = new ArrayList<GhiChu>();
-        this.arrayList.addAll(ghiChuList);
-
+        this.noteListAll = ghiChuList;
     }
 
     @Override
@@ -46,6 +44,20 @@ public class GhiChuAdapter extends BaseAdapter {
     public long getItemId(int position) {
         return position;
     }
+
+    @Override
+    public Filter getFilter() {
+        return null;
+    }
+
+
+//    @Override
+//    public Filter getFilter() {
+//        f(filter == null) {
+//            filter = new CustomFilter();
+//        }
+//        return filter;
+//    }
 
     private class ViewHolder {
         TextView txtTen, txtNgay, txtThoiGian;
@@ -109,18 +121,4 @@ public class GhiChuAdapter extends BaseAdapter {
         return convertView;
     }
 
-    public void filter(String charText) {
-        charText = charText.toLowerCase(Locale.getDefault());
-        ghiChuList.clear();
-        if (charText.length() == 0) {
-            ghiChuList.addAll(arrayList);
-        } else {
-            for (GhiChu ghichu : arrayList) {
-                if (ghichu.getTenGC().toLowerCase(Locale.getDefault()).contains(charText)) {
-                    ghiChuList.add(ghichu);
-                }
-            }
-        }
-        notifyDataSetChanged();
-    }
 }

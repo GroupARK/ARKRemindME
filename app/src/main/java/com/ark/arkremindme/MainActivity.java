@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
     Button noteButton;
     Button todoListButton;
     Button taskButton;
+    Button tagButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
         noteButton = (Button) findViewById(R.id.noteClick);
         todoListButton = (Button) findViewById(R.id.todoClick);
         taskButton = (Button) findViewById(R.id.taskClick);
+        tagButton = findViewById(R.id.tagClick);
 
         noteButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,6 +41,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, Task.class));
+            }
+        });
+
+        tagButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, TagActivity.class));
             }
         });
     }

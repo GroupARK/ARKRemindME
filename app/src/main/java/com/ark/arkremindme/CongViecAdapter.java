@@ -1,38 +1,32 @@
 package com.ark.arkremindme;
 
 import android.content.Context;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
-
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class CongViecAdapter extends BaseAdapter implements Filterable {
 
     private TodoList context;
     private int layout;
     private List<CongViec> congViecList;
-    private CustomFilter filter;
-    private ArrayList<CongViec> filterList;
+    private CustomFilterToDoList filter;
+    private List<CongViec> filterList;
 
 
     public CongViecAdapter(TodoList context, int layout, List<CongViec> congViecList) {
         this.context = context;
         this.layout = layout;
         this.congViecList = congViecList;
-        this.filterList = (ArrayList<CongViec>) congViecList;
+        this.filterList = congViecList;
 
     }
 
@@ -54,34 +48,37 @@ public class CongViecAdapter extends BaseAdapter implements Filterable {
     @Override
     public Filter getFilter() {
         if (filter == null) {
-            filter = new CustomFilter();
+            filter = new CustomFilterToDoList();
         }
         return filter;
     }
 
-    class CustomFilter extends Filter {
+    class CustomFilterToDoList extends Filter {
 
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
-
+            constraint = constraint.toString().toUpperCase();
             FilterResults results = new FilterResults();
+            ArrayList<CongViec> filters = new ArrayList<>();
 
             if (constraint != null && constraint.length() > 0) {
-                constraint = constraint.toString().toUpperCase();
-                ArrayList<CongViec> filters = new ArrayList<>();
 
                 for (int i = 0; i < filterList.size(); i++) {
                     if (filterList.get(i).getTenCV().toUpperCase().contains(constraint)) {
                         CongViec cv = new CongViec(context ,filterList.get(i).getIdCV(), filterList.get(i).getTenCV(), filterList.get(i).getDate(), filterList.get(i).getTime(), false);
                         filters.add(cv);
-
                     }
                 }
                 results.count = filters.size();
                 results.values = filters;
             } else {
+                for (int i = 0; i < filterList.size(); i++) {
+                    CongViec cv = new CongViec(context ,filterList.get(i).getIdCV(), filterList.get(i).getTenCV(), filterList.get(i).getDate(), filterList.get(i).getTime(), false);
+                    filters.add(cv);
+                }
                 results.count = filterList.size();
-                results.values = filterList;
+                System.out.print(results.count);
+                results.values = filters;
             }
 
             return results;
@@ -159,18 +156,5 @@ public class CongViecAdapter extends BaseAdapter implements Filterable {
         return convertView;
     }
 
-//    public void filter(String charText) {
-//        charText = charText.toLowerCase(Locale.getDefault());
-//        congViecList.clear();
-//        if (charText.length() == 0) {
-//            congViecList.addAll(arrayList);
-//        } else {
-//            for (CongViec congviec : arrayList) {
-//                if (congviec.getTenCV().toLowerCase(Locale.getDefault()).contains(charText)) {
-//                    congViecList.add(congviec);
-//                }
-//            }
-//        }
-//        notifyDataSetChanged();
-//    }
+
 }

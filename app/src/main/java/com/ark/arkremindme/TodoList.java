@@ -89,7 +89,7 @@ public class TodoList extends AppCompatActivity implements AppManager {
                 return false;
             }
         });
-        return super.onCreateOptionsMenu(menu);
+        return true;
     }
 
     @Override
