@@ -71,7 +71,6 @@ public class CongViecAdapter extends BaseAdapter implements Filterable {
                     }
                 }
                 results.count = filters.size();
-                Toast.makeText(context, "sss" + results.count, Toast.LENGTH_SHORT).show();
                 results.values = filters;
             } else {
 //                for (int i = 0; i < filterList.size(); i++) {

@@ -30,8 +30,6 @@ public class Noidungvieclam extends AppCompatActivity implements AppManager {
     NoiDungAdapter adapter;
     String title;
 
-//    private final String KEY = "edittextValue";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +49,7 @@ public class Noidungvieclam extends AppCompatActivity implements AppManager {
         noidungDatabase = new Database(this, "noidung.sqlite", null, 1);
 
         noidungDatabase.QueryData("CREATE TABLE IF NOT EXISTS "+ title +"(Id INTEGER PRIMARY KEY AUTOINCREMENT, TenND VARCHAR(250))");
+
         noidungDatabase.QueryData("CREATE TABLE IF NOT EXISTS "+ title+"title(TenND VARCHAR(250))");
 
         final EditText edt = (EditText) findViewById(R.id.edittextsave);
@@ -76,7 +75,6 @@ public class Noidungvieclam extends AppCompatActivity implements AppManager {
             String name = dataViecLam.getString(1);
             int id = dataViecLam.getInt(0);
             arrayNoiDung.add(new NoiDung(Noidungvieclam.this, name, id, false));
-
         }
         adapter.notifyDataSetChanged();
     }

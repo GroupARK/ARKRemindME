@@ -6,23 +6,30 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class ViecLamAdapter extends BaseAdapter {
+public class ViecLamAdapter extends BaseAdapter implements Filterable {
 
     private Task context;
     private int layout;
     private List<ViecLam> viecLamList;
+    private List<ViecLam> viecLamAll;
+    CustomFilter filter;
 
     public ViecLamAdapter(Task context, int layout, List<ViecLam> viecLamList) {
         this.context = context;
         this.layout = layout;
         this.viecLamList = viecLamList;
+        this.viecLamAll = viecLamList;
     }
 
     @Override
@@ -38,6 +45,45 @@ public class ViecLamAdapter extends BaseAdapter {
     @Override
     public long getItemId(int position) {
         return position;
+    }
+
+    @Override
+    public Filter getFilter() {
+        if (filter == null) {
+            filter = new CustomFilter();
+        }
+        return filter;
+    }
+
+    class CustomFilter extends Filter {
+
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            constraint = constraint.toString().toUpperCase();
+            FilterResults results = new FilterResults();
+            List<ViecLam> filters = new ArrayList<>();
+            if (constraint != null && constraint.length() > 0) {
+                for (int i = 0; i < viecLamAll.size(); i++) {
+                    if (viecLamAll.get(i).getTenVL().contains(constraint)) {
+                        ViecLam vl = new ViecLam(context, viecLamAll.get(i).getTenVL(), viecLamAll.get(i).getIdVL(), false) ;
+                        filters.add(vl);
+                    }
+                }
+                results.count = filters.size();
+                Toast.makeText(context, "sss" + results.count, Toast.LENGTH_SHORT).show();
+                results.values = filters;
+            } else {
+                results.count = viecLamAll.size();
+                results.values = viecLamAll;
+            }
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            viecLamList = (List<ViecLam>) results.values;
+            notifyDataSetChanged();
+        }
     }
 
     private class ViewHoler {

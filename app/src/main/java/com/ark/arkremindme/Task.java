@@ -2,6 +2,7 @@ package com.ark.arkremindme;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -61,7 +62,21 @@ public class Task extends AppCompatActivity implements AppManager {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_task, menu);
-        return super.onCreateOptionsMenu(menu);
+        MenuItem myActionMenuItem = menu.findItem(R.id.menuSearchTask);
+        SearchView searchView = (SearchView) myActionMenuItem.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.getFilter().filter(newText);
+                return true;
+            }
+        });
+        return true;
     }
 
     @Override
