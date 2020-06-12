@@ -1,7 +1,6 @@
 package com.ark.arkremindme;
 
 import android.content.Context;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,10 +10,10 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
+
+
 
 public class GhiChuAdapter extends BaseAdapter implements Filterable {
 
@@ -22,6 +21,7 @@ public class GhiChuAdapter extends BaseAdapter implements Filterable {
     private int layout;
     private List<GhiChu> ghiChuList;
     private List<GhiChu> noteListAll;
+    CustomFilter filter;
 
     public GhiChuAdapter(Note context, int layout, List<GhiChu> ghiChuList) {
         this.context = context;
@@ -47,17 +47,43 @@ public class GhiChuAdapter extends BaseAdapter implements Filterable {
 
     @Override
     public Filter getFilter() {
-        return null;
+        if (filter == null) {
+            filter = new CustomFilter();
+        }
+        return filter;
     }
 
+    class CustomFilter extends Filter {
 
-//    @Override
-//    public Filter getFilter() {
-//        f(filter == null) {
-//            filter = new CustomFilter();
-//        }
-//        return filter;
-//    }
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            constraint = constraint.toString().toUpperCase();
+            FilterResults results = new FilterResults();
+            List<GhiChu> filters = new ArrayList<>();
+
+            if (constraint != null && constraint.length() > 0) {
+                for (int i = 0; i < noteListAll.size(); i++) {
+                    if (noteListAll.get(i).getTenGC().toUpperCase().contains(constraint)) {
+                        GhiChu gc = new GhiChu(context, noteListAll.get(i).getIdGC(),noteListAll.get(i).getTenGC(), noteListAll.get(i).getDate(), noteListAll.get(i).getTime(), false);
+                        filters.add(gc);
+                    }
+                }
+                results.count = filters.size();
+                results.values = filters;
+            } else {
+                results.count = noteListAll.size();
+                results.values = noteListAll;
+            }
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            ghiChuList = (List<GhiChu>) results.values;
+            notifyDataSetChanged();
+        }
+    }
+
 
     private class ViewHolder {
         TextView txtTen, txtNgay, txtThoiGian;

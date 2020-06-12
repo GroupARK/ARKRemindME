@@ -92,7 +92,7 @@ public class ViecLamAdapter extends BaseAdapter {
         holder.imgEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.DialogSuaCongViec(viecLam.getTenVL(), position);
+                context.DialogSuaCongViec(viecLam.getTenVL(), viecLam.getIdVL());
             }
         });
 

@@ -86,7 +86,7 @@ public class TodoList extends AppCompatActivity implements AppManager {
             @Override
             public boolean onQueryTextChange(String newText) {
                 adapter.getFilter().filter(newText);
-                return false;
+                return true;
             }
         });
         return true;

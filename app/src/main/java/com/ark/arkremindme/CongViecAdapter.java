@@ -10,6 +10,8 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,8 +20,8 @@ public class CongViecAdapter extends BaseAdapter implements Filterable {
     private TodoList context;
     private int layout;
     private List<CongViec> congViecList;
-    private CustomFilterToDoList filter;
     private List<CongViec> filterList;
+    CustomFilter filter;
 
 
     public CongViecAdapter(TodoList context, int layout, List<CongViec> congViecList) {
@@ -48,21 +50,20 @@ public class CongViecAdapter extends BaseAdapter implements Filterable {
     @Override
     public Filter getFilter() {
         if (filter == null) {
-            filter = new CustomFilterToDoList();
+            filter = new CustomFilter();
         }
         return filter;
     }
 
-    class CustomFilterToDoList extends Filter {
+    class CustomFilter extends Filter {
 
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             constraint = constraint.toString().toUpperCase();
             FilterResults results = new FilterResults();
-            ArrayList<CongViec> filters = new ArrayList<>();
+            List<CongViec> filters = new ArrayList<>();
 
             if (constraint != null && constraint.length() > 0) {
-
                 for (int i = 0; i < filterList.size(); i++) {
                     if (filterList.get(i).getTenCV().toUpperCase().contains(constraint)) {
                         CongViec cv = new CongViec(context ,filterList.get(i).getIdCV(), filterList.get(i).getTenCV(), filterList.get(i).getDate(), filterList.get(i).getTime(), false);
@@ -70,15 +71,16 @@ public class CongViecAdapter extends BaseAdapter implements Filterable {
                     }
                 }
                 results.count = filters.size();
+                Toast.makeText(context, "sss" + results.count, Toast.LENGTH_SHORT).show();
                 results.values = filters;
             } else {
-                for (int i = 0; i < filterList.size(); i++) {
-                    CongViec cv = new CongViec(context ,filterList.get(i).getIdCV(), filterList.get(i).getTenCV(), filterList.get(i).getDate(), filterList.get(i).getTime(), false);
-                    filters.add(cv);
-                }
+//                for (int i = 0; i < filterList.size(); i++) {
+//                    CongViec cv = new CongViec(context ,filterList.get(i).getIdCV(), filterList.get(i).getTenCV(), filterList.get(i).getDate(), filterList.get(i).getTime(), false);
+//                    filters.add(cv);
+//                }
                 results.count = filterList.size();
-                System.out.print(results.count);
-                results.values = filters;
+                //Toast.makeText(context, "sss" + results.count, Toast.LENGTH_SHORT).show();
+                results.values = filterList;
             }
 
             return results;
@@ -86,9 +88,9 @@ public class CongViecAdapter extends BaseAdapter implements Filterable {
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
+
             congViecList = (List<CongViec>) results.values;
             notifyDataSetChanged();
-
         }
     }
 
