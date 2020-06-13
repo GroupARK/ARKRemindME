@@ -7,6 +7,7 @@ import androidx.appcompat.widget.SearchView;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
@@ -186,6 +187,13 @@ public class TodoList extends AppCompatActivity implements AppManager {
         });
         dialogXoa.show();
 
+    }
+
+    public void editContentCV(int id){
+        Intent i = new Intent(this, TodoListShow.class);
+        String title = arrayCongViec.get(id).getTenCV();
+        i.putExtra("title",title);
+        startActivity(i);
     }
 
 }

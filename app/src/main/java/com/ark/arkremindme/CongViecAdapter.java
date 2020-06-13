@@ -95,13 +95,13 @@ public class CongViecAdapter extends BaseAdapter implements Filterable {
 
     private class ViewHolder {
         TextView txtTen, txtNgay, txtThoiGian;
-        ImageView imgDelete, imgEdit;
+        ImageView imgDelete, imgEdit, imgButton;
         CheckBox cbCongViec;
 
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
 
         if (convertView == null) {
@@ -113,6 +113,7 @@ public class CongViecAdapter extends BaseAdapter implements Filterable {
             holder.txtThoiGian = (TextView) convertView.findViewById(R.id.textViewThoiGianCV);
             holder.imgDelete = (ImageView) convertView.findViewById(R.id.tododelete);
             holder.imgEdit = (ImageView) convertView.findViewById(R.id.todoedit);
+            holder.imgButton = (ImageView) convertView.findViewById(R.id.imageViewButton);
             holder.cbCongViec = (CheckBox) convertView.findViewById(R.id.checkBoxCV);
             convertView.setTag(holder);
 
@@ -151,6 +152,13 @@ public class CongViecAdapter extends BaseAdapter implements Filterable {
             public void onClick(View v) {
                 context.DialogXoaCV(congViec.getTenCV(), congViec.getIdCV());
 
+            }
+        });
+
+        holder.imgButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.editContentCV(position);
             }
         });
 

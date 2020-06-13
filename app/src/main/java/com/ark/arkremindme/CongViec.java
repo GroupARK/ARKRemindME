@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 public class CongViec {
 
     private static final String PREFERENCES_NAMESPACE = "checkboxes_states";
-
     private int IdCV;
     private String TenCV;
     private String date;
