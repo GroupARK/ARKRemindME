@@ -21,8 +21,9 @@
 
     <EditText
         android:id="@+id/edittextsave"
-        android:layout_width="311dp"
-        android:layout_height="85dp"
+        android:layout_width="324dp"
+        android:layout_height="87dp"
+        android:layout_marginStart="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,8 +31,10 @@
 
     <ListView
         android:id="@+id/listviewND"
-        android:layout_width="411dp"
-        android:layout_height="631dp"
+        android:layout_width="414dp"
+        android:layout_height="624dp"
+        android:layout_marginEnd="10dp"
+        android:background="@color/colorPurple_A400"
         android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

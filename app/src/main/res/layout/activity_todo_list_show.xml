@@ -7,6 +7,7 @@
     tools:context=".TodoListShow">
 
     <ListView
+        android:background="#CFC461"
         android:id="@+id/listviewShow"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
