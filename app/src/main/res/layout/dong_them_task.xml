@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textThemVL"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="THÊM VIỆC LÀM"
+        android:textSize="30sp"
+        android:textColor="#D8643F"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:hint="NHẬP VIỆC LÀM"
+        android:id="@+id/edittextThemVL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textThemVL"
+        android:layout_marginTop="10dp"/>
+
+    <Button
+        android:background="#3484C3"
+        android:padding="20dp"
+        android:id="@+id/buttonThemVL"
+        android:layout_below="@+id/edittextThemVL"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:text="THÊM"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"/>
+
+    <Button
+        android:id="@+id/buttonHuyVL"
+        android:gravity="center"
+        android:background="#3484C3"
+        android:padding="20dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@id/buttonThemVL"
+        android:layout_below="@+id/edittextThemVL"
+        android:text="HỦY"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"/>
+
+</RelativeLayout>

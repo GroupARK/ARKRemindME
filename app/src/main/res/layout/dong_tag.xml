@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:weightSum="10"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageShowTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:focusable="true"
+
+        android:focusableInTouchMode="true"
+        app:srcCompat="@drawable/taskbutton" />
+
+    <TextView
+        android:id="@+id/textviewTag"
+        android:layout_width="246dp"
+        android:layout_height="64dp"
+        android:layout_weight="7"
+        android:text="Tên Tag"
+        android:textColor="@color/colorPrimary"
+        android:textSize="30sp" />
+
+    <ImageView
+        android:id="@+id/thungracTag"
+        android:layout_width="51dp"
+        android:layout_height="64dp"
+        android:layout_weight="1"
+        android:src="@drawable/thungrac" />
+
+    <ImageView
+        android:id="@+id/butchitag"
+        android:layout_width="51dp"
+        android:layout_height="64dp"
+        android:layout_weight="1"
+        android:src="@drawable/butchi" />
+</LinearLayout>

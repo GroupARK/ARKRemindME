@@ -1,0 +1,2 @@
+rootProject.name='ARK Remind ME!'
+include ':app'

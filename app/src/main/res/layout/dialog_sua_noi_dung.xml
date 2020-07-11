@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textviewCNND"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:gravity="center"
+        android:textColor="#E8AC54"
+        android:textSize="30sp"
+        android:text="CẬP NHẬT NỘI DUNG"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/edittextXNND"
+        android:hint="Nhập tên nội dung"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:background="#E1A449"
+            android:padding="20dp"
+            android:id="@+id/buttonXNND"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="90dp"
+            android:text="XÁC NHẬN"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textviewCNGC"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:gravity="center"
+        android:textColor="#7EC32F"
+        android:textSize="30sp"
+        android:text="CẬP NHẬT GHI CHÚ"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    
+    <EditText
+        android:id="@+id/edittextXNGC"
+        android:hint="Nhập tên ghi chú"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:background="#3484C3"
+            android:padding="20dp"
+            android:id="@+id/buttonXNGC"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="90dp"
+            android:text="XÁC NHẬN"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

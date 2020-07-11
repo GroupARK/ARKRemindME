@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textThemCV"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="THÊM CÔNG VIỆC"
+        android:textSize="30sp"
+        android:textColor="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:hint="NHẬP CÔNG VIỆC"
+        android:id="@+id/edittextThemCV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textThemCV"
+        android:layout_marginTop="10dp" />
+
+    <EditText
+        android:id="@+id/textNgayCV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edittextThemCV"
+        android:layout_marginTop="10dp"
+        android:hint="NHẬP NGÀY   " />
+
+    <EditText
+        android:layout_toRightOf="@+id/textNgayCV"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/edittextThemCV"
+        android:hint="NHẬP GIỜ"
+        android:id="@+id/textThoiGianCV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:background="#3484C3"
+        android:padding="20dp"
+        android:id="@+id/buttonThem"
+        android:layout_below="@+id/textNgayCV"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:text="THÊM"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/buttonHuy"
+        android:gravity="center"
+        android:background="#3484C3"
+        android:padding="20dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@id/buttonThem"
+        android:layout_below="@+id/textNgayCV"
+        android:text="HỦY"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>
