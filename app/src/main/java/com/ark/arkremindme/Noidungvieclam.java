@@ -28,19 +28,28 @@ public class Noidungvieclam extends AppCompatActivity implements AppManager {
     ListView lvNoiDung;
     ArrayList<NoiDung> arrayNoiDung;
     NoiDungAdapter adapter;
+<<<<<<< HEAD
     String b = null;
+=======
+    String title;
+
+>>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_noidungvieclam);
 
+<<<<<<< HEAD
         String title = getIntent().getExtras().getString("title");
         String a [] = title.split(" ");
         for(int i = 0 ; i< a.length; i++){
             b += a[i];
         }
 
+=======
+        title = getIntent().getExtras().getString("title");
+>>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
         getSupportActionBar().setTitle(title);
 
 
@@ -52,9 +61,15 @@ public class Noidungvieclam extends AppCompatActivity implements AppManager {
 
         noidungDatabase = new Database(this, "noidung.sqlite", null, 1);
 
+<<<<<<< HEAD
         noidungDatabase.QueryData("CREATE TABLE IF NOT EXISTS "+ b +"(Id INTEGER PRIMARY KEY AUTOINCREMENT, TenND VARCHAR(250))");
 
         noidungDatabase.QueryData("CREATE TABLE IF NOT EXISTS "+ b+"title(TenND VARCHAR(250))");
+=======
+        noidungDatabase.QueryData("CREATE TABLE IF NOT EXISTS "+ title +"(Id INTEGER PRIMARY KEY AUTOINCREMENT, TenND VARCHAR(250))");
+
+        noidungDatabase.QueryData("CREATE TABLE IF NOT EXISTS "+ title+"title(TenND VARCHAR(250))");
+>>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
 
         final EditText edt = (EditText) findViewById(R.id.edittextsave);
         Button btnSave = (Button) findViewById(R.id.button2);
@@ -64,7 +79,11 @@ public class Noidungvieclam extends AppCompatActivity implements AppManager {
             @Override
             public void onClick(View v) {
                 String name = edt.getText().toString();
+<<<<<<< HEAD
                 noidungDatabase.QueryData("Insert into "+ b +"title"+" values('"+name+"')");
+=======
+                noidungDatabase.QueryData("Insert into "+ title+"title"+" values('"+name+"')");
+>>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
             }
         });
 
@@ -73,7 +92,11 @@ public class Noidungvieclam extends AppCompatActivity implements AppManager {
 
 
     private void GetDataNoiDung() {
+<<<<<<< HEAD
         Cursor dataViecLam = noidungDatabase.GetData("SELECT * FROM "+ b);
+=======
+        Cursor dataViecLam = noidungDatabase.GetData("SELECT * FROM "+ title);
+>>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
         arrayNoiDung.clear();
         while (dataViecLam.moveToNext()) {
             String name = dataViecLam.getString(1);
@@ -83,7 +106,11 @@ public class Noidungvieclam extends AppCompatActivity implements AppManager {
         adapter.notifyDataSetChanged();
     }
     public String getNote() {
+<<<<<<< HEAD
         Cursor dataNote = noidungDatabase.GetData("SELECT * FROM " + b + "title");
+=======
+        Cursor dataNote = noidungDatabase.GetData("SELECT * FROM " + title + "title");
+>>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
         String name = null;
         while (dataNote.moveToNext()) {
             name = dataNote.getString(0);
@@ -121,7 +148,11 @@ public class Noidungvieclam extends AppCompatActivity implements AppManager {
                 if (tenND.equals("")) {
                     Toast.makeText(Noidungvieclam.this, "Vui lòng nhập tên nội dung", Toast.LENGTH_SHORT).show();
                 } else {
+<<<<<<< HEAD
                     noidungDatabase.QueryData("INSERT INTO "+ b + " VALUES(null,'"+ tenND +"')");
+=======
+                    noidungDatabase.QueryData("INSERT INTO "+ title + " VALUES(null,'"+ tenND +"')");
+>>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
                     Toast.makeText(Noidungvieclam.this, "Đã thêm", Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
                     GetDataNoiDung();
@@ -155,7 +186,11 @@ public class Noidungvieclam extends AppCompatActivity implements AppManager {
             @Override
             public void onClick(View v) {
                 String tenMoi = edtNoiDung.getText().toString().trim();
+<<<<<<< HEAD
                 noidungDatabase.QueryData("UPDATE "+b+" SET TenND = '"+ tenMoi +"' WHERE Id = '"+ id +"'");
+=======
+                noidungDatabase.QueryData("UPDATE "+title+" SET TenND = '"+ tenMoi +"' WHERE Id = '"+ id +"'");
+>>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
                 Toast.makeText(Noidungvieclam.this, "Đã cập nhật", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
                 GetDataNoiDung();
@@ -171,7 +206,11 @@ public class Noidungvieclam extends AppCompatActivity implements AppManager {
         dialogXoa.setPositiveButton("Có", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+<<<<<<< HEAD
                 noidungDatabase.QueryData("DELETE FROM "+b+" WHERE Id = '"+ id +"'");
+=======
+                noidungDatabase.QueryData("DELETE FROM "+title+" WHERE Id = '"+ id +"'");
+>>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
                 Toast.makeText(Noidungvieclam.this, "Đã xóa", Toast.LENGTH_SHORT).show();
                 GetDataNoiDung();
             }

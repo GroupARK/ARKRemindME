@@ -65,7 +65,11 @@ public class ViecLamAdapter extends BaseAdapter implements Filterable {
             if (constraint != null && constraint.length() > 0) {
                 for (int i = 0; i < viecLamAll.size(); i++) {
                     if (viecLamAll.get(i).getTenVL().contains(constraint)) {
+<<<<<<< HEAD
                         ViecLam vl = new ViecLam(context, viecLamAll.get(i).getTenVL(), viecLamAll.get(i).getIdVL(), false, "") ;
+=======
+                        ViecLam vl = new ViecLam(context, viecLamAll.get(i).getTenVL(), viecLamAll.get(i).getIdVL(), false) ;
+>>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
                         filters.add(vl);
                     }
                 }

@@ -4,11 +4,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 
+<<<<<<< HEAD
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+=======
+import android.app.AlertDialog;
+import android.app.Dialog;
+>>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -17,6 +22,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+<<<<<<< HEAD
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -25,6 +31,13 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+=======
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+>>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
 
 public class TodoList extends AppCompatActivity implements AppManager {
 
@@ -33,17 +46,24 @@ public class TodoList extends AppCompatActivity implements AppManager {
     ListView lvCongViec;
     ArrayList<CongViec> arrayCongViec;
     CongViecAdapter adapter;
+<<<<<<< HEAD
     DatePickerDialog.OnDateSetListener onDateSetListener;
     TimePickerDialog.OnTimeSetListener onTimeSetListener;
 
 
     @SuppressLint("RestrictedApi")
+=======
+
+>>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todo_list);
+<<<<<<< HEAD
         getSupportActionBar().setTitle("Todo List");
         getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
+=======
+>>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
 
         lvCongViec = (ListView) findViewById(R.id.listviewCongViec);
         arrayCongViec = new ArrayList<>();
@@ -51,22 +71,36 @@ public class TodoList extends AppCompatActivity implements AppManager {
         adapter = new CongViecAdapter(this, R.layout.dong_cong_viec, arrayCongViec);
         lvCongViec.setAdapter(adapter);
 
+<<<<<<< HEAD
         database = new Database(this, "database.sqlite", null, 1);
 
         database.QueryData("CREATE TABLE IF NOT EXISTS CongViec1(Id INTEGER PRIMARY KEY AUTOINCREMENT, TenCV VARCHAR(250), Ngay DATE, ThoiGian TIME, tag VARCHAR(250))");
+=======
+        database = new Database(this, "TodoList.sqlite", null, 1);
+
+        database.QueryData("CREATE TABLE IF NOT EXISTS CongViec(Id INTEGER PRIMARY KEY AUTOINCREMENT, TenCV VARCHAR(250), Ngay DATE, ThoiGian TIME)");
+>>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
 
         GetDataCongViec();
     }
 
     private void GetDataCongViec() {
+<<<<<<< HEAD
         Cursor dataCongViec = database.GetData(("SELECT * FROM CongViec1"));
+=======
+        Cursor dataCongViec = database.GetData(("SELECT * FROM CongViec"));
+>>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
         arrayCongViec.clear();
         while (dataCongViec.moveToNext()) {
             String name = dataCongViec.getString(1);
             int id = dataCongViec.getInt(0);
             String date = dataCongViec.getString(2);
             String time = dataCongViec.getString(3);
+<<<<<<< HEAD
             arrayCongViec.add(new CongViec(TodoList.this, id, name, date, time, false, ""));
+=======
+            arrayCongViec.add(new CongViec(TodoList.this, id, name, date, time, false));
+>>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
         }
 
         adapter.notifyDataSetChanged();
@@ -109,7 +143,10 @@ public class TodoList extends AppCompatActivity implements AppManager {
     public void DialogThem() {
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_them_cong_viec);
+<<<<<<< HEAD
         final Calendar c = Calendar.getInstance();
+=======
+>>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
 
         final EditText edtTen = (EditText) dialog.findViewById(R.id.edittextThemCV);
         final EditText edtNgay = dialog.findViewById(R.id.textNgayCV);
@@ -118,6 +155,7 @@ public class TodoList extends AppCompatActivity implements AppManager {
         Button btnThem = dialog.findViewById(R.id.buttonThem);
         Button btnHuy = dialog.findViewById(R.id.buttonHuy);
 
+<<<<<<< HEAD
         edtNgay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -153,6 +191,10 @@ public class TodoList extends AppCompatActivity implements AppManager {
                 edtThoiGian.setText(chuan(hourOfDay)+":"+chuan(minute));
             }
         };
+=======
+        edtNgay.setText("DD/MM/YYYY");
+        edtThoiGian.setText("HH:MM");
+>>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
 
         btnThem.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -163,7 +205,11 @@ public class TodoList extends AppCompatActivity implements AppManager {
                 if (tencv.equals("") && ngayCV.equals("") && thoigianCV.equals("")) {
                     Toast.makeText(TodoList.this, "Vui lòng nhập tên công việc", Toast.LENGTH_SHORT).show();
                 } else {
+<<<<<<< HEAD
                     database.QueryData("INSERT INTO CongViec1 VALUES(null, '" + tencv + "', '"+ ngayCV +"', '"+ thoigianCV +"', 'all')");
+=======
+                    database.QueryData("INSERT INTO CongViec VALUES(null, '" + tencv + "', '"+ ngayCV +"', '"+ thoigianCV +"')");
+>>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
                     Toast.makeText(TodoList.this, "Đã thêm", Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
                     GetDataCongViec();
@@ -182,6 +228,7 @@ public class TodoList extends AppCompatActivity implements AppManager {
 
     }
 
+<<<<<<< HEAD
     private String chuan(int i) {
         if(i < 10)
             return "0"+i;
@@ -189,16 +236,22 @@ public class TodoList extends AppCompatActivity implements AppManager {
             return String.valueOf(i);
     }
 
+=======
+>>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
     @Override
     public void DialogSuaCongViec(final String name, final int id) {
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_sua);
+<<<<<<< HEAD
         final Calendar c = Calendar.getInstance();
+=======
+>>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
         dialog.show();
 
         final EditText edtTenCV = dialog.findViewById(R.id.edittextXNCV);
         final EditText edtNgayCV = dialog.findViewById(R.id.edittextNgayCV);
         final EditText edtThoiGianCV = dialog.findViewById(R.id.edittextThoiGianCV);
+<<<<<<< HEAD
         edtNgayCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -234,6 +287,8 @@ public class TodoList extends AppCompatActivity implements AppManager {
                 edtThoiGianCV.setText(chuan(hourOfDay)+":"+chuan(minute));
             }
         };
+=======
+>>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
         Button btnXacNhan = dialog.findViewById(R.id.buttonXNCV);
 
         edtTenCV.setText(name);
@@ -246,7 +301,11 @@ public class TodoList extends AppCompatActivity implements AppManager {
                 String tenMoi = edtTenCV.getText().toString();
                 String ngayMoi = edtNgayCV.getText().toString();
                 String thoigianMoi = edtThoiGianCV.getText().toString();
+<<<<<<< HEAD
                 database.QueryData("UPDATE CongViec1 SET TenCV  = '"+ tenMoi +"', Ngay = '"+ ngayMoi +"', ThoiGian = '"+ thoigianMoi +"' WHERE Id = '"+ id +"'");
+=======
+                database.QueryData("UPDATE CongViec SET TenCV  = '"+ tenMoi +"', Ngay = '"+ ngayMoi +"', ThoiGian = '"+ thoigianMoi +"' WHERE Id = '"+ id +"'");
+>>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
                 Toast.makeText(TodoList.this, "Đã cập nhật", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
                 GetDataCongViec();
@@ -263,7 +322,11 @@ public class TodoList extends AppCompatActivity implements AppManager {
         dialogXoa.setPositiveButton("Có", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+<<<<<<< HEAD
                 database.QueryData("DELETE FROM CongViec1 WHERE Id = '" + id + "'");
+=======
+                database.QueryData("DELETE FROM CongViec WHERE Id = '" + id + "'");
+>>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
                 Toast.makeText(TodoList.this, "Đã xóa " + tencv, Toast.LENGTH_SHORT).show();
                 GetDataCongViec();
             }

@@ -9,20 +9,30 @@ public class ViecLam {
 
     private String TenVL;
     private int IdVL;
+<<<<<<< HEAD
     private String tag;
+=======
+>>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
     boolean selected = false;
     private SharedPreferences mSettings;
     private SharedPreferences.Editor mEditor;
 
+<<<<<<< HEAD
     public ViecLam(Context context, String tenVL, int idVL, boolean selected, String tag) {
         TenVL = tenVL;
         IdVL = idVL;
         this.tag = tag;
+=======
+    public ViecLam(Context context, String tenVL, int idVL, boolean selected) {
+        TenVL = tenVL;
+        IdVL = idVL;
+>>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
         mSettings = context.getSharedPreferences(PREFERENCES_NAMESPACE, 0);
         mEditor = mSettings.edit();
         setSelected(mSettings.getBoolean(TenVL, selected));
     }
 
+<<<<<<< HEAD
     public String getTag() {
         return tag;
     }
@@ -31,6 +41,8 @@ public class ViecLam {
         this.tag = tag;
     }
 
+=======
+>>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
     public String getTenVL() {
         return TenVL;
     }

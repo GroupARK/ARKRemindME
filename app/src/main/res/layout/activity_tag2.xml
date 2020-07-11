@@ -5,10 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".TagActivity">
+<<<<<<< HEAD
     <ListView
         android:id="@+id/listTag"
         android:background="@color/colorAccent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+=======
+>>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
 
 </androidx.constraintlayout.widget.ConstraintLayout>

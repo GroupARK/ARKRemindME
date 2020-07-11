@@ -1,5 +1,6 @@
 package com.ark.arkremindme;
 
+<<<<<<< HEAD
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -185,5 +186,17 @@ public class TagActivity extends AppCompatActivity implements AppManager {
         Intent i = new Intent(TagActivity.this, ShowTagActivity.class);
         i.putExtra("title", name);
         startActivity(i);
+=======
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+
+public class TagActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_tag2);
+>>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
     }
 }

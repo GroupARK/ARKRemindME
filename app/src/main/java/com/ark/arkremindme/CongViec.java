@@ -10,22 +10,33 @@ public class CongViec {
     private String TenCV;
     private String date;
     private String time;
+<<<<<<< HEAD
     private String tag;
+=======
+>>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
     boolean selected = false;
     private SharedPreferences mSettings;
     private SharedPreferences.Editor mEditor;
 
+<<<<<<< HEAD
     public CongViec(Context context, int idCV, String tenCV, String date, String time, boolean selected, String tag) {
+=======
+    public CongViec(Context context, int idCV, String tenCV, String date, String time, boolean selected) {
+>>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
         IdCV = idCV;
         TenCV = tenCV;
         this.date = date;
         this.time = time;
+<<<<<<< HEAD
         this.tag = tag;
+=======
+>>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
         mSettings = context.getSharedPreferences(PREFERENCES_NAMESPACE, 0);
         mEditor = mSettings.edit();
         setSelected(mSettings.getBoolean(TenCV, selected));
     }
 
+<<<<<<< HEAD
     public String getTag() {
         return tag;
     }
@@ -34,6 +45,8 @@ public class CongViec {
         this.tag = tag;
     }
 
+=======
+>>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
     public int getIdCV() {
         return IdCV;
     }

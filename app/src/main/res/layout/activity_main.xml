@@ -13,7 +13,11 @@
         android:layout_width="310dp"
         android:layout_height="120dp"
         android:layout_centerHorizontal="true"
+<<<<<<< HEAD
         android:layout_margin="10dp"
+=======
+        android:layout_marginTop="50dp"
+>>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
         android:background="@drawable/note"
         android:text="NOTE"
         android:textSize="40dp" />
@@ -22,10 +26,17 @@
         android:textStyle="italic"
         android:background="@drawable/todolist"
         android:textColor="#03A9F4"
+<<<<<<< HEAD
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/noteClick"
         android:text="TODO List"
         android:layout_margin="10dp"
+=======
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/noteClick"
+        android:text="TODO List"
+>>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
         android:textSize="40dp"
         android:id="@+id/todoClick"
         android:layout_width="310dp"
@@ -35,7 +46,11 @@
         android:textStyle="italic"
         android:background="@drawable/task"
         android:textColor="#DA584E"
+<<<<<<< HEAD
         android:layout_margin="10dp"
+=======
+        android:layout_marginTop="50dp"
+>>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
         android:layout_centerHorizontal="true"
         android:layout_below="@id/todoClick"
         android:text="TASK"
@@ -51,7 +66,11 @@
         android:textSize="40dp"
         android:text="TAG"
         android:layout_centerHorizontal="true"
+<<<<<<< HEAD
         android:layout_margin="10dp"
+=======
+        android:layout_marginTop="50dp"
+>>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
         android:layout_below="@id/taskClick"
         android:layout_width="310dp"
         android:layout_height="120dp"/>

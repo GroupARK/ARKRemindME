@@ -11,22 +11,33 @@ public class GhiChu {
     private String TenGC;
     private String date;
     private String time;
+<<<<<<< HEAD
     private String tag;
+=======
+>>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
     boolean selected = false;
     private SharedPreferences mSettings;
     private SharedPreferences.Editor mEditor;
 
+<<<<<<< HEAD
     public GhiChu(Context context, int idGC, String tenGC, String date, String time, boolean selected, String tag) {
+=======
+    public GhiChu(Context context, int idGC, String tenGC, String date, String time, boolean selected) {
+>>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
         IdGC = idGC;
         TenGC = tenGC;
         this.date = date;
         this.time = time;
+<<<<<<< HEAD
         this.tag = tag;
+=======
+>>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
         mSettings = context.getSharedPreferences(PREFERENCES_NAMESPACE, 0);
         mEditor = mSettings.edit();
         setSelected(mSettings.getBoolean(TenGC, selected));
     }
 
+<<<<<<< HEAD
     public String getTag() {
         return tag;
     }
@@ -35,6 +46,8 @@ public class GhiChu {
         this.tag = tag;
     }
 
+=======
+>>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
     public int getIdGC() {
         return IdGC;
     }
