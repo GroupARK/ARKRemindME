@@ -4,7 +4,6 @@
 
     <application
         android:allowBackup="true"
-<<<<<<< HEAD
         android:icon="@drawable/logo_team"
         android:label="@string/app_name"
         android:roundIcon="@drawable/logo_team"
@@ -33,19 +32,6 @@
         <activity
             android:name=".Note"
             android:parentActivityName=".MainActivity" />
-=======
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".TodoListShow"></activity>
-        <activity android:name=".TagActivity" />
-        <activity android:name=".Noidungvieclam" />
-        <activity android:name=".Task" />
-        <activity android:name=".TodoList" />
-        <activity android:name=".Note" />
->>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

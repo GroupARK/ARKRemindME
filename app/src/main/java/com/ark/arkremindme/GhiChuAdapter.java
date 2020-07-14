@@ -64,11 +64,7 @@ public class GhiChuAdapter extends BaseAdapter implements Filterable {
             if (constraint != null && constraint.length() > 0) {
                 for (int i = 0; i < noteListAll.size(); i++) {
                     if (noteListAll.get(i).getTenGC().toUpperCase().contains(constraint)) {
-<<<<<<< HEAD
                         GhiChu gc = new GhiChu(context, noteListAll.get(i).getIdGC(),noteListAll.get(i).getTenGC(), noteListAll.get(i).getDate(), noteListAll.get(i).getTime(), false,"");
-=======
-                        GhiChu gc = new GhiChu(context, noteListAll.get(i).getIdGC(),noteListAll.get(i).getTenGC(), noteListAll.get(i).getDate(), noteListAll.get(i).getTime(), false);
->>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
                         filters.add(gc);
                     }
                 }
@@ -143,10 +139,7 @@ public class GhiChuAdapter extends BaseAdapter implements Filterable {
         holder.imgDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-<<<<<<< HEAD
                 System.out.print(ghiChu.getTag());
-=======
->>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
                 context.DialogXoaCV(ghiChu.getTenGC(), ghiChu.getIdGC());
 
             }

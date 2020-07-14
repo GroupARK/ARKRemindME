@@ -5,24 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Task">
-    
-<!--    <SearchView-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"/>-->
+
 
     <ListView
         android:id="@+id/listviewTask"
-<<<<<<< HEAD
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-=======
-        android:layout_width="409dp"
-        android:layout_height="729dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
->>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
         android:background="#A3D866"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

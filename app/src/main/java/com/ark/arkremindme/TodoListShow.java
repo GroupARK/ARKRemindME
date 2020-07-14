@@ -3,13 +3,11 @@ package com.ark.arkremindme;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-<<<<<<< HEAD
 import android.annotation.SuppressLint;
-=======
->>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
@@ -29,19 +27,14 @@ public class TodoListShow extends AppCompatActivity implements AppManager {
     ListView lvShow;
     ArrayList<Show> arrayShow;
     ShowAdapter adapter;
-<<<<<<< HEAD
     String b= null;
+    String delete = null;
 
     @SuppressLint("RestrictedApi")
-=======
-    String title;
-
->>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todo_list_show);
-<<<<<<< HEAD
         getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
 
         String title = getIntent().getExtras().getString("title");
@@ -49,12 +42,10 @@ public class TodoListShow extends AppCompatActivity implements AppManager {
         String a [] = title.split(" ");
         for(int i = 0 ; i < a.length; i++) {
             b += a[i];
-        }
-=======
 
+    }
         title = getIntent().getExtras().getString("title");
         getSupportActionBar().setTitle(title);
->>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
 
         lvShow = (ListView) findViewById(R.id.listviewShow);
         arrayShow = new ArrayList<>();
@@ -62,22 +53,14 @@ public class TodoListShow extends AppCompatActivity implements AppManager {
         adapter = new ShowAdapter(this, R.layout.dong_noi_dung, arrayShow);
         lvShow.setAdapter(adapter);
 
-        showDatabase = new Database(this, "show.sqlite", null, 1);
-<<<<<<< HEAD
+        showDatabase = new Database(this, "database.sqlite", null, 1);
         showDatabase.QueryData("CREATE TABLE IF NOT EXISTS "+ b +"(Id INTEGER PRIMARY KEY AUTOINCREMENT, TenShow VARCHAR(250))");
-=======
-        showDatabase.QueryData("CREATE TABLE IF NOT EXISTS "+ title +"(Id INTEGER PRIMARY KEY AUTOINCREMENT, TenShow VARCHAR(250))");
->>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
-
+        delete = getIntent().getExtras().getString("delete");
         GetDataShow();
     }
 
     private void GetDataShow() {
-<<<<<<< HEAD
         Cursor dataShow = showDatabase.GetData("SELECT * FROM " + b);
-=======
-        Cursor dataShow = showDatabase.GetData("SELECT * FROM " + title);
->>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
         arrayShow.clear();
         while (dataShow.moveToNext()) {
             String name = dataShow.getString(1);
@@ -117,11 +100,7 @@ public class TodoListShow extends AppCompatActivity implements AppManager {
                 if (tenND.equals("")) {
                     Toast.makeText(TodoListShow.this, "Vui lòng nhập tên nội dung", Toast.LENGTH_SHORT).show();
                 } else {
-<<<<<<< HEAD
                     showDatabase.QueryData("INSERT INTO "+ b + " VALUES(null,'"+ tenND +"')");
-=======
-                    showDatabase.QueryData("INSERT INTO "+ title + " VALUES(null,'"+ tenND +"')");
->>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
                     Toast.makeText(TodoListShow.this, "Đã thêm", Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
                     GetDataShow();
@@ -154,11 +133,7 @@ public class TodoListShow extends AppCompatActivity implements AppManager {
             @Override
             public void onClick(View v) {
                 String tenMoi = edtNoiDung.getText().toString().trim();
-<<<<<<< HEAD
                 showDatabase.QueryData("UPDATE "+ b +" SET TenND = '"+ tenMoi +"' WHERE Id = '"+ id +"'");
-=======
-                showDatabase.QueryData("UPDATE "+title+" SET TenND = '"+ tenMoi +"' WHERE Id = '"+ id +"'");
->>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
                 Toast.makeText(TodoListShow.this, "Đã cập nhật", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
                 GetDataShow();
@@ -173,11 +148,7 @@ public class TodoListShow extends AppCompatActivity implements AppManager {
         dialogXoa.setPositiveButton("Có", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-<<<<<<< HEAD
                 showDatabase.QueryData("DELETE FROM "+ b +" WHERE Id = '"+ id +"'");
-=======
-                showDatabase.QueryData("DELETE FROM "+title+" WHERE Id = '"+ id +"'");
->>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
                 Toast.makeText(TodoListShow.this, "Đã xóa", Toast.LENGTH_SHORT).show();
                 GetDataShow();
             }
@@ -191,5 +162,8 @@ public class TodoListShow extends AppCompatActivity implements AppManager {
 
         dialogXoa.show();
 
+    }
+    public void deleteTable(String b) {
+        showDatabase.QueryData("Drop table " + b);
     }
 }

@@ -1,6 +1,5 @@
 package com.ark.arkremindme;
 
-<<<<<<< HEAD
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -22,7 +21,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 
 public class TagActivity extends AppCompatActivity implements AppManager {
 
@@ -64,24 +62,6 @@ public class TagActivity extends AppCompatActivity implements AppManager {
 
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_tag, menu);
-//
-//        MenuItem myActionMenuItem = menu.findItem(R.id.itemSearchTag);
-//
-//        SearchView searchView = (SearchView) myActionMenuItem.getActionView();
-//
-//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String newText) {
-//                adapter.getFilter().filter(newText);
-//                return true;
-//            }
-//        });
-//
         return true;
     }
 
@@ -186,17 +166,5 @@ public class TagActivity extends AppCompatActivity implements AppManager {
         Intent i = new Intent(TagActivity.this, ShowTagActivity.class);
         i.putExtra("title", name);
         startActivity(i);
-=======
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
-
-public class TagActivity extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tag2);
->>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
     }
 }

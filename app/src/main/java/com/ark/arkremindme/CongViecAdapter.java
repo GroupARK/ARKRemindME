@@ -66,27 +66,14 @@ public class CongViecAdapter extends BaseAdapter implements Filterable {
             if (constraint != null && constraint.length() > 0) {
                 for (int i = 0; i < filterList.size(); i++) {
                     if (filterList.get(i).getTenCV().toUpperCase().contains(constraint)) {
-<<<<<<< HEAD
                         CongViec cv = new CongViec(context ,filterList.get(i).getIdCV(), filterList.get(i).getTenCV(), filterList.get(i).getDate(), filterList.get(i).getTime(), false, "");
-=======
-                        CongViec cv = new CongViec(context ,filterList.get(i).getIdCV(), filterList.get(i).getTenCV(), filterList.get(i).getDate(), filterList.get(i).getTime(), false);
->>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
                         filters.add(cv);
                     }
                 }
                 results.count = filters.size();
                 results.values = filters;
             } else {
-<<<<<<< HEAD
                 results.count = filterList.size();
-=======
-//                for (int i = 0; i < filterList.size(); i++) {
-//                    CongViec cv = new CongViec(context ,filterList.get(i).getIdCV(), filterList.get(i).getTenCV(), filterList.get(i).getDate(), filterList.get(i).getTime(), false);
-//                    filters.add(cv);
-//                }
-                results.count = filterList.size();
-                //Toast.makeText(context, "sss" + results.count, Toast.LENGTH_SHORT).show();
->>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
                 results.values = filterList;
             }
 

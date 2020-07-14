@@ -4,10 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 
-<<<<<<< HEAD
 import android.annotation.SuppressLint;
-=======
->>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -33,21 +30,12 @@ public class Note extends AppCompatActivity implements AppManager {
     ArrayList<GhiChu> arrayGhiChu;
     GhiChuAdapter adapter;
     Calendar c;
-<<<<<<< HEAD
     @SuppressLint("RestrictedApi")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note);
         getSupportActionBar().setTitle("List Note");
         getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
-=======
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_note);
-
->>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
         lvGhiChu = (ListView) findViewById(R.id.listviewGhiChu);
         arrayGhiChu = new ArrayList<>();
         c = Calendar.getInstance();
@@ -55,7 +43,6 @@ public class Note extends AppCompatActivity implements AppManager {
         adapter = new GhiChuAdapter(this, R.layout.dong_ghi_chu, arrayGhiChu);
         lvGhiChu.setAdapter(adapter);
 
-<<<<<<< HEAD
         noteDatabase = new Database(this, "database.sqlite", null, 1);
 
         noteDatabase.QueryData("CREATE TABLE IF NOT EXISTS GhiChu2(Id INTEGER PRIMARY KEY AUTOINCREMENT, TenGC VARCHAR(250), Ngay DATE, ThoiGian TIME, Tag VACHAR(250))");
@@ -66,29 +53,13 @@ public class Note extends AppCompatActivity implements AppManager {
 
     private void GetDataGhiChu() {
         Cursor dataGhiChu = noteDatabase.GetData("SELECT * FROM GhiChu2");
-=======
-        noteDatabase = new Database(this, "note.sqlite", null, 1);
-
-        noteDatabase.QueryData("CREATE TABLE IF NOT EXISTS GhiChu(Id INTEGER PRIMARY KEY AUTOINCREMENT, TenGC VARCHAR(250), Ngay DATE, ThoiGian TIME)");
-
-        GetDataGhiChu();
-    }
-
-    private void GetDataGhiChu() {
-        Cursor dataGhiChu = noteDatabase.GetData("SELECT * FROM GhiChu");
->>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
         arrayGhiChu.clear();
         while (dataGhiChu.moveToNext()) {
             String name = dataGhiChu.getString(1);
             int id = dataGhiChu.getInt(0);
             String todayDate = dataGhiChu.getString(2);
             String currentTime = dataGhiChu.getString(3);
-<<<<<<< HEAD
             arrayGhiChu.add(new GhiChu(Note.this, id, name, todayDate, currentTime, false, ""));
-=======
-            arrayGhiChu.add(new GhiChu(Note.this, id, name, todayDate, currentTime, false));
-
->>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
         }
         adapter.notifyDataSetChanged();
     }
@@ -145,11 +116,7 @@ public class Note extends AppCompatActivity implements AppManager {
                 if (tenNote.equals("") && ngayNote.equals("") && thoigianNote.equals("")) {
                     Toast.makeText(Note.this, "Vui lòng nhập tên ghi chú", Toast.LENGTH_SHORT).show();
                 } else {
-<<<<<<< HEAD
                     noteDatabase.QueryData("INSERT INTO GhiChu2 VALUES(null,'"+ tenNote +"','"+ ngayNote +"','"+ thoigianNote +"', 'all')");
-=======
-                    noteDatabase.QueryData("INSERT INTO GhiChu VALUES(null,'"+ tenNote +"','"+ ngayNote +"','"+ thoigianNote +"')");
->>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
                     Toast.makeText(Note.this, "Đã thêm", Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
                     GetDataGhiChu();
@@ -192,11 +159,7 @@ public class Note extends AppCompatActivity implements AppManager {
                 String tenMoi = edtGhiChu.getText().toString().trim();
                 String ngayMoi = chuan(c.get(Calendar.DAY_OF_MONTH))+"/"+chuan(c.get(Calendar.MONTH)+1)+"/"+c.get(Calendar.YEAR);
                 String thoigianMoi = chuan(c.get(Calendar.HOUR))+":"+chuan(c.get(Calendar.MINUTE));
-<<<<<<< HEAD
                 noteDatabase.QueryData("UPDATE GhiChu2 SET TenGC = '"+ tenMoi +"', Ngay = '"+ ngayMoi +"', ThoiGian = '"+ thoigianMoi +"' WHERE Id = '"+ id +"'");
-=======
-                noteDatabase.QueryData("UPDATE GhiChu SET TenGC = '"+ tenMoi +"', Ngay = '"+ ngayMoi +"', ThoiGian = '"+ thoigianMoi +"' WHERE Id = '"+ id +"'");
->>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
                 Toast.makeText(Note.this, "Đã cập nhật", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
                 GetDataGhiChu();
@@ -213,11 +176,7 @@ public class Note extends AppCompatActivity implements AppManager {
         dialogXoa.setPositiveButton("Có", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-<<<<<<< HEAD
                 noteDatabase.QueryData("DELETE FROM GhiChu2 WHERE Id = '"+ id +"'");
-=======
-                noteDatabase.QueryData("DELETE FROM GhiChu WHERE Id = '"+ id +"'");
->>>>>>> 98e64522bdedbaae23006a45d29e5f259c08efed
                 Toast.makeText(Note.this, "Đã xóa", Toast.LENGTH_SHORT).show();
                 GetDataGhiChu();
             }
